@@ -1,0 +1,41 @@
+How to create classes in C
+
+<header file>
+typedef struct _GtkPrintJob GtkPrintJob
+
+<source file>
+struct _GtkPrintJob {
+	all class private attributes
+}
+
+typedef struct _GtkPrintJobClass GtkPrintJobClass
+struct _GtkPrintJobClass {
+	all class functions, including functions to get/access private attributes
+}
+
+
+
+void my_class_name_class_init () -> executed once per class, before first instance is created, intializes a class
+
+void my_class_name_init() -> executed for every instance, initializes an instance of a class
+
+
+eg:
+
+gtk_print_job_class_init (GtkPrintJobClass *class)
+{
+	GObjectClass *object_class;
+	object_class = (GObjectClass *) class;
+	
+	object_class->finalize = gtk_print_job_finalize;
+	object_class->constructed = gtk_print_job_constructed;
+	object_class->set_property = gtk_print_job_set_property;
+	object_class->get_property = gtk_print_job_get_property;
+
+
+
+
+
+pip3 install meson for latest version
+
+install flex bison cmake pkgconfig
