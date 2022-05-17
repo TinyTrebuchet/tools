@@ -1,0 +1,26 @@
+# HUION HS611 Pad
+
+# Pad
+"xdotool key F11"
+  b:10
+"xdotool key Prior"
+  b:13
+"xdotool key Next"
+  b:14
+"xdotool key ctrl+z"
+  b:15
+"xdotool key shift+ctrl+a"
+  b:16
+"xdotool key shift+ctrl+g"
+  b:17
+"xdotool key Delete"
+  b:18
+"xdotool key shift+ctrl+t"
+  b:19
+
+
+# Stylus
+"xdotool key shift+ctrl+p"
+  b:21
+"xdotool key shift+ctrl+e"
+  b:22
