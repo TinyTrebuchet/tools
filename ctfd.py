@@ -3,7 +3,7 @@
 import json, pandas, requests, secrets, string, sys
 from pprint import pprint
 
-url = 'https://zionctf.iitmandi.co.in'
+url = 'DEMO-CTFD-URL'
 token = 'DEMOTOKEN'
 
 # Enable logging
