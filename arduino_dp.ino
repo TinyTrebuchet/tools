@@ -1,3 +1,4 @@
+
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
@@ -7,7 +8,73 @@
 #define FOUR 11
 
 String command;
+bool one, two, three, four;
+
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void oneOn()
+{
+  digitalWrite(ONE, LOW);
+  lcd.setCursor(0,0);
+  lcd.print("1 - ON  ");
+  one = true;
+}
+
+void oneOff()
+{
+  digitalWrite(ONE, HIGH);
+  lcd.setCursor(0,0);
+  lcd.print("1 - OFF ");
+  one = false;
+}
+
+void twoOn()
+{
+  digitalWrite(TWO, LOW);
+  lcd.setCursor(8,0);
+  lcd.print("2 - ON  ");
+  two = true;
+}
+
+void twoOff()
+{
+  digitalWrite(TWO, HIGH);
+  lcd.setCursor(8,0);
+  lcd.print("2 - OFF ");
+  two = false;
+}
+
+void threeOn()
+{
+  digitalWrite(THREE, LOW);
+  lcd.setCursor(0,1);
+  lcd.print("3 - ON  ");
+  three = true;
+}
+
+void threeOff()
+{
+  digitalWrite(THREE, HIGH);
+  lcd.setCursor(0,1);
+  lcd.print("3 - OFF ");
+  three = false;
+}
+
+void fourOn()
+{
+  digitalWrite(FOUR, LOW);
+  lcd.setCursor(8, 1);
+  lcd.print("4 - ON  ");
+  four = true;
+}
+
+void fourOff()
+{
+  digitalWrite(FOUR, HIGH);
+  lcd.setCursor(8, 1);
+  lcd.print("4 - OFF ");
+  four = false;
+}
 
 void setup() {
   // put your setup code here, to run once:
@@ -29,15 +96,11 @@ void setup() {
 
   lcd.print("Hello World");
   delay(2000);
-  lcd.setCursor(0,0);
-  lcd.print("1 - OFF ");
-  lcd.setCursor(8,0);
-  lcd.print("2 - OFF ");
-  lcd.setCursor(0,1);
-  lcd.print("3 - OFF ");
-  lcd.setCursor(8, 1);
-  lcd.print("4 - OFF ");
-  
+
+  oneOff();
+  twoOff();
+  threeOff();
+  fourOff();
 }
 
 void loop() {
@@ -59,51 +122,77 @@ void loop() {
 
     if (command == "*one on")
     {
-      digitalWrite(ONE, LOW);
-      lcd.setCursor(0,0);
-      lcd.print("1 - ON  ");
+      oneOn();
     }
     else if (command == "*one off")
     {
-      digitalWrite(ONE, HIGH);
-      lcd.setCursor(0,0);
-      lcd.print("1 - OFF ");
+      oneOff();
+    }
+    else if (command == "*one toggle")
+    {
+      if (one)
+        oneOff();
+      else
+        oneOn();
     }
     else if (command == "*two on")
     {
-      digitalWrite(TWO, LOW);
-      lcd.setCursor(8,0);
-      lcd.print("2 - ON  ");
+      twoOn();
     }
     else if (command == "*two off")
     {
-      digitalWrite(TWO, HIGH);
-      lcd.setCursor(8,0);
-      lcd.print("2 - OFF ");
+      twoOff();
+    }
+    else if (command == "*two toggle")
+    {
+      if (two)
+        twoOff();
+      else
+        twoOn();
     }
     else if (command == "*three on")
     {
-      digitalWrite(THREE, LOW);
-      lcd.setCursor(0,1);
-      lcd.print("3 - ON  ");
+      threeOn();
     }
     else if (command == "*three off")
     {
-      digitalWrite(THREE, HIGH);
-      lcd.setCursor(0,1);
-      lcd.print("3 - OFF ");
+      threeOff();
+    }
+    else if (command == "*three toggle")
+    {
+      if (three)
+        threeOff();
+      else
+        threeOn();
     }
     else if (command == "*four on")
     {
-      digitalWrite(FOUR, LOW);
-      lcd.setCursor(8, 1);
-      lcd.print("4 - ON  ");
+      fourOn();
     }
     else if (command == "*four off")
     {
-      digitalWrite(FOUR, HIGH);
-      lcd.setCursor(8, 1);
-      lcd.print("4 - OFF ");
+      fourOff();
+    }
+    else if (command == "*four toggle")
+    {
+      if (four)
+        fourOff();
+      else
+        fourOn();
+    }
+    else if (command == "*all on")
+    {
+      oneOn();
+      twoOn();
+      threeOn();
+      fourOn();
+    }
+    else if (command == "*all off")
+    {
+      oneOff();
+      twoOff();
+      threeOff();
+      fourOff();
     }
 
     command = "";
